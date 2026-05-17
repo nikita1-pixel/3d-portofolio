@@ -9,7 +9,7 @@
 </div>
 
 ---
-
+https://nikita1-pixel.github.io/3d-portofolio/
 ## ✨ Features
 
 - **Dynamic Content Architecture:** Content is entirely driven by a single `js/data.js` file. Update your data, and the UI automatically renders without touching the HTML!
