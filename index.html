@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>DevPortfolio</title>
+
+  <!-- ── External: Tailwind (utility classes) ── -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- ── External: Google Fonts ── -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+  <!-- ── Tailwind config (design tokens) ── -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-error": "#690005",
+            "secondary-fixed": "#dae2fd",
+            "tertiary-fixed-dim": "#7bd0ff",
+            "on-surface-variant": "#bccbb9",
+            "outline-variant": "#3d4a3d",
+            "surface": "#051424",
+            "inverse-surface": "#d4e4fa",
+            "surface-container-high": "#1c2b3c",
+            "on-secondary-container": "#adb4ce",
+            "primary-fixed-dim": "#4ae176",
+            "on-primary-fixed-variant": "#005321",
+            "background": "#051424",
+            "primary": "#4be277",
+            "on-primary-container": "#004b1e",
+            "primary-container": "#22c55e",
+            "on-tertiary-fixed": "#001e2c",
+            "surface-container-lowest": "#010f1f",
+            "on-primary": "#003915",
+            "on-secondary": "#283044",
+            "on-tertiary": "#00354a",
+            "on-secondary-fixed-variant": "#3f465c",
+            "on-error-container": "#ffdad6",
+            "surface-tint": "#4ae176",
+            "tertiary-fixed": "#c4e7ff",
+            "surface-container": "#122131",
+            "surface-container-highest": "#273647",
+            "tertiary-container": "#2eb7f2",
+            "on-tertiary-container": "#00455f",
+            "outline": "#869585",
+            "surface-bright": "#2c3a4c",
+            "on-background": "#d4e4fa",
+            "on-surface": "#d4e4fa",
+            "on-secondary-fixed": "#131b2e",
+            "secondary-container": "#3f465c",
+            "primary-fixed": "#6bff8f",
+            "error-container": "#93000a",
+            "inverse-on-surface": "#233143",
+            "tertiary": "#7cd0ff",
+            "on-primary-fixed": "#002109",
+            "secondary": "#bec6e0",
+            "on-tertiary-fixed-variant": "#004c69",
+            "surface-variant": "#273647",
+            "inverse-primary": "#006e2f",
+            "surface-dim": "#051424",
+            "error": "#ffb4ab",
+            "secondary-fixed-dim": "#bec6e0",
+            "surface-container-low": "#0d1c2d"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
+          },
+          spacing: {
+            "margin-desktop": "80px",
+            "unit": "8px",
+            "margin-mobile": "20px",
+            "bento-gap": "16px",
+            "gutter": "24px"
+          },
+          fontFamily: {
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          fontSize: {
+            "body-md":            ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "body-lg":            ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "label-mono":         ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "500" }],
+            "headline-lg-mobile": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+            "display-lg":         ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-lg":        ["40px", { lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-md":        ["24px", { lineHeight: "32px", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- ── Our custom CSS files ── -->
+  <link rel="stylesheet" href="css/background.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30 overflow-x-hidden">
+
+  <!-- ══════════════════════════════════════
+       INTERACTIVE BACKGROUND
+  ══════════════════════════════════════ -->
+  <div id="interactive-bg">
+    <div class="bg-mesh" id="bg-mesh"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════ -->
+  <nav class="bg-surface/80 backdrop-blur-lg border-b border-outline-variant/30 shadow-sm
+              top-0 sticky z-50 flex justify-between items-center
+              px-margin-desktop h-20 w-full mx-auto max-w-7xl transition-all duration-300">
+
+    <div class="flex items-center gap-4">
+      <div class="w-10 h-10 rounded-full overflow-hidden transition-all duration-500
+                  bg-surface-container-highest opacity-0 scale-50" id="nav-logo-target">
+        <img alt="Developer Avatar" class="w-full h-full object-contain" id="nav-avatar-img"
+             src="https://lh3.googleusercontent.com/aida/ADBb0uiSjWiEJldRUsiNQY5tH-ZmIW1irBmeZsYbXUjrq2CrrIdF_cN1Yx4x0UxVJYLn_eRypJG8BsmTaOKuvqeZlwjm16nJcTiVRRhNL3hMm86wND2y67GjKq2cELOCsxnprFCL072lIc9RF6jTnXwN7BD9YLOl1Q8ujqfXOZgt35fF_PgKOAs4aMj_M2fdvDqtfRmWZQ3ax4SHt4QlT0BnqbnjLg6BWZlXe55YtavPAfi2NPZwxBK5Yt2bFhg" />
+      </div>
+      <div class="text-headline-md font-headline-md font-bold text-primary">Nrimala Choudhary</div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-gutter font-body-md text-body-md">
+      <a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110 duration-300" href="#about">About</a>
+      <a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110 duration-300" href="#projects">Projects</a>
+      <a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110 duration-300" href="#experience">Experience</a>
+      <a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110 duration-300" href="#education">Education</a>
+    </div>
+
+    <button class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold
+                   hover:scale-105 active:scale-95 transition-all duration-300
+                   shadow-md hover:shadow-primary/20">
+      Hire Me
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════ -->
+  <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+
+    <!-- ── HERO ── -->
+    <section class="min-h-[795px] flex flex-col md:flex-row items-center justify-center gap-gutter py-12" id="hero">
+      <div class="flex-1 space-y-6">
+        <h1 class="font-display-lg text-display-lg leading-tight entrance-anim" style="animation-delay:0.1s">
+          Hi, I'm a <span class="text-primary">Full-Stack</span> Web Developer.
+        </h1>
+        <div class="text-headline-md text-on-surface-variant font-label-mono h-12 flex items-center entrance-anim"
+             style="animation-delay:0.3s">
+          <span class="typing-cursor" id="typing-stack"></span>
+        </div>
+        <p class="text-body-lg text-on-surface-variant max-w-lg entrance-anim" style="animation-delay:0.5s">
+          Full-stack developer with hands-on experience in React, Next.js, Node.js, and Python.
+          Adept at building secure, data-driven applications and implementing complex backend logic.
+          Combining a background in software architecture with a strong foundation in Machine Learning
+          and Deep Learning to develop intelligent, automated solutions.
+        </p>
+        <div class="flex gap-4 entrance-anim" style="animation-delay:0.7s">
+          <a href="#projects"
+             class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold flex items-center gap-2
+                    group hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-105">
+            View Projects
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+          <a href="assets/resume.pdf" download
+             class="border border-primary text-primary px-8 py-4 rounded-xl font-bold
+                    hover:bg-primary/10 transition-all duration-300 hover:scale-105">
+            Download CV
+          </a>
+        </div>
+      </div>
+
+      <div class="flex-1 flex justify-center relative entrance-anim" id="hero-visual-area" style="animation-delay:0.4s">
+        <div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full scale-75 -z-10"></div>
+        <div class="hero-avatar-container w-full max-w-[500px]" id="avatar-wrapper">
+          <img alt="Developer Avatar"
+               class="w-full h-full object-contain animate-float drop-shadow-2xl" id="hero-avatar"
+               src="https://lh3.googleusercontent.com/aida/ADBb0uiSjWiEJldRUsiNQY5tH-ZmIW1irBmeZsYbXUjrq2CrrIdF_cN1Yx4x0UxVJYLn_eRypJG8BsmTaOKuvqeZlwjm16nJcTiVRRhNL3hMm86wND2y67GjKq2cELOCsxnprFCL072lIc9RF6jTnXwN7BD9YLOl1Q8ujqfXOZgt35fF_PgKOAs4aMj_M2fdvDqtfRmWZQ3ax4SHt4QlT0BnqbnjLg6BWZlXe55YtavPAfi2NPZwxBK5Yt2bFhg" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT / SKILLS ── -->
+    <section class="py-24 space-y-12" id="about">
+      <div class="text-center space-y-4 reveal-item">
+        <span class="text-primary font-label-mono uppercase tracking-widest">Expertise</span>
+        <h2 class="font-headline-lg text-headline-lg">Technical Arsenal</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-bento-gap" id="skills-grid">
+        <!-- Large feature card -->
+        <div class="md:col-span-2 md:row-span-2 glass-card p-8 rounded-3xl group cursor-pointer
+                    overflow-hidden relative tilt-card reveal-item"
+             onclick="openSkillModal('Full-Stack Architecture',
+               'Leading end-to-end development cycles with a focus on modular design and high performance.')">
+          <div class="absolute -right-10 -bottom-10 opacity-5 group-hover:opacity-10 transition-opacity">
+            <span class="material-symbols-outlined text-[200px]"
+                  style="font-variation-settings:'FILL' 1">architecture</span>
+          </div>
+          <span class="text-primary font-label-mono block mb-4">Core Philosophy</span>
+          <h3 class="text-headline-md mb-4">Full-Stack Development</h3>
+          <p class="text-on-surface-variant text-body-md mb-6">
+            Full-Stack mind, Frontend soul. I specialize in building highly responsive,
+            scalable, and animated web applications.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-mono text-xs">JavaScript</span>
+            <span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-mono text-xs">React</span>
+            <span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-mono text-xs">API</span>
+            <span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-mono text-xs">Node.js</span>
+            <span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-mono text-xs">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Small skill cards -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
+             onclick="openSkillModal('TypeScript', 'Writing type-safe, maintainable code for complex enterprise applications.')">
+          <span class="material-symbols-outlined text-primary text-4xl mb-4">code</span>
+          <h4 class="text-headline-md font-bold">TypeScript</h4>
+        </div>
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
+             onclick="openSkillModal('React &amp; Next.js', 'Creating immersive, fast-loading user interfaces with the latest web standards.')">
+          <span class="material-symbols-outlined text-tertiary text-4xl mb-4">layers</span>
+          <h4 class="text-headline-md font-bold">React</h4>
+        </div>
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
+             onclick="openSkillModal('Node.js', 'Building powerful server-side applications and real-time communication layers.')">
+          <span class="material-symbols-outlined text-primary text-4xl mb-4">terminal</span>
+          <h4 class="text-headline-md font-bold">Node.js</h4>
+        </div>
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
+             onclick="openSkillModal('PostgreSQL', 'Designing robust relational data models and optimizing query performance.')">
+          <span class="material-symbols-outlined text-tertiary text-4xl mb-4">database</span>
+          <h4 class="text-headline-md font-bold">SQL</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="py-24 space-y-24" id="projects">
+      <div class="flex justify-between items-end reveal-item">
+        <div class="space-y-4">
+          <span class="text-tertiary font-label-mono uppercase tracking-widest">Portfolio</span>
+          <h2 class="font-headline-lg text-headline-lg">Selected Projects</h2>
+        </div>
+        <div class="hidden md:block text-on-surface-variant font-label-mono italic">
+          Scroll to explore details →
+        </div>
+      </div>
+
+      <!-- Project 1 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center reveal-item">
+        <div class="order-2 md:order-1 space-y-6">
+          <div class="flex gap-2">
+            <span class="text-xs font-label-mono bg-primary/10 text-primary px-3 py-1 rounded-full">AuthPortal</span>
+            <span class="text-xs font-label-mono bg-tertiary/10 text-tertiary px-3 py-1 rounded-full">Full-Stack</span>
+          </div>
+          <h3 class="font-headline-lg text-headline-lg">Secure Governance Platform</h3>
+          <p class="text-body-lg text-on-surface-variant">
+            Designed and built a secure authentication system featuring Server-Side Rendering (SSR)
+            for optimized performance.
+          </p>
+          <ul class="space-y-3 font-body-md">
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary">check_circle</span>
+              Map interface for visualizing user activity and access patterns
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary">check_circle</span>
+              Custom-built identity protection algorithms
+            </li>
+          </ul>
+          <button class="border border-outline-variant hover:border-primary px-6 py-3 rounded-xl
+                         flex items-center gap-2 group transition-all duration-300 hover:scale-105"
+                  onclick="openProjectModal('auth-portal')">
+            View Details
+            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">open_in_new</span>
+          </button>
+        </div>
+        <div class="order-1 md:order-2 rounded-3xl overflow-hidden bg-surface-container
+                    shadow-2xl project-img-container h-80 md:h-[400px]">
+          <img alt="Authportal Dashboard"
+               class="w-full h-full object-cover parallax-img transition-transform duration-700"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNt8NP0VJeEqWZQFA3hS_TbjuYv35fxzRNvjlO8oNBP58VqVkc6BFCdbx42o6JIgE1sWZIIzgxYh_vlUoaWVFrffxEkBYgGHb2A_UygNrh3HksIgFJjnIvcjcXBtPQx9I-rWhCeHdHDTjzqMmgJQhZWRY10pB407QtNPzWGkyi53yuLqMPOz-03WkFmncTsuNpE2sA-RyiYu2BG5YFgoP2G4CZn761bBrjPLx0h6wTdORXuF7r0rPvyWhsryw-owZNe21NamUoyh6I" />
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center reveal-item">
+        <div class="rounded-3xl overflow-hidden bg-surface-container shadow-2xl project-img-container h-80 md:h-[400px]">
+          <img alt="AI CRM Interface"
+               class="w-full h-full object-cover parallax-img transition-transform duration-700"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX5aMnc1FsD1tK_ZR88jMTY5YhgEvM6ZMIMJ_4rHI5QjDuPP0CxdnjXFw_Ao5XDZveMaYdztTCbiYtuarphIs2l3zR7NRZQFL4S5t7hBzdzoAgqUepacgGsyXF_4nThjRKY_G35q1ley5V5ApdZb3BW2ITkvYL-E_QRpbhx-V6FnpXncqZzPD6kDJHg4TfcaTLgWEhCKsWjA0a961IdZO2IMMPLjvS59YDGhoKV_qXdvXwO17cRLMA6Nsk9Jyg2uZaqdqSWQf-4tan" />
+        </div>
+        <div class="space-y-6">
+          <div class="flex gap-2">
+            <span class="text-xs font-label-mono bg-primary/10 text-primary px-3 py-1 rounded-full">SaaS</span>
+            <span class="text-xs font-label-mono bg-tertiary/10 text-tertiary px-3 py-1 rounded-full">AI/ML</span>
+          </div>
+          <h3 class="font-headline-lg text-headline-lg">NeuralNode CRM</h3>
+          <p class="text-body-lg text-on-surface-variant">
+            An AI-powered customer relationship platform that predicts churn and automates
+            follow-ups using natural language processing.
+          </p>
+          <ul class="space-y-3 font-body-md">
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary">check_circle</span>
+              Proprietary ML model integration
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary">check_circle</span>
+              Real-time collaborative workspace
+            </li>
+          </ul>
+          <button class="border border-outline-variant hover:border-primary px-6 py-3 rounded-xl
+                         flex items-center gap-2 group transition-all duration-300 hover:scale-105"
+                  onclick="openProjectModal('neural-crm')">
+            View Details
+            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">open_in_new</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section class="py-24 relative overflow-hidden" id="experience">
+      <div class="text-center space-y-4 mb-16 reveal-item">
+        <span class="text-primary font-label-mono uppercase tracking-widest">Journey</span>
+        <h2 class="font-headline-lg text-headline-lg">Career Path</h2>
+      </div>
+
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Center progress line -->
+        <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1
+                    bg-surface-container-highest rounded-full overflow-hidden">
+          <div class="w-full bg-gradient-to-b from-primary via-tertiary to-transparent h-0 transition-all duration-300"
+               id="scroll-progress-line"></div>
+        </div>
+
+        <div class="space-y-24">
+          <!-- Milestone 1 -->
+          <div class="flex flex-col md:flex-row items-center gap-gutter milestone reveal-item">
+            <div class="flex-1 md:text-right">
+              <span class="text-primary font-label-mono">2022 - Present</span>
+              <h4 class="text-headline-md">Senior Architect</h4>
+              <p class="text-on-surface-variant text-body-md">TechNova Systems</p>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center z-10
+                        shadow-[0_0_20px_rgba(75,226,119,0.5)] transition-transform duration-500 hover:scale-125">
+              <span class="material-symbols-outlined text-on-primary">rocket_launch</span>
+            </div>
+            <div class="flex-1 glass-card p-6 rounded-2xl">
+              <p class="text-on-surface-variant">Spearheaded the migration of a legacy monolithic platform to a
+                cloud-native microservices architecture, reducing infrastructure costs by 40%.</p>
+            </div>
+          </div>
+
+          <!-- Milestone 2 -->
+          <div class="flex flex-col md:flex-row-reverse items-center gap-gutter milestone reveal-item">
+            <div class="flex-1 md:text-left">
+              <span class="text-tertiary font-label-mono">2020 - 2022</span>
+              <h4 class="text-headline-md">Full-Stack Lead</h4>
+              <p class="text-on-surface-variant text-body-md">InnoLabs Global</p>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center z-10
+                        shadow-[0_0_20px_rgba(124,208,255,0.5)] transition-transform duration-500 hover:scale-125">
+              <span class="material-symbols-outlined text-on-tertiary">groups</span>
+            </div>
+            <div class="flex-1 glass-card p-6 rounded-2xl">
+              <p class="text-on-surface-variant">Led a team of 8 developers in launching a series of high-impact
+                FinTech solutions used by over 50,000 monthly active users.</p>
+            </div>
+          </div>
+
+          <!-- Milestone 3 -->
+          <div class="flex flex-col md:flex-row items-center gap-gutter milestone reveal-item">
+            <div class="flex-1 md:text-right">
+              <span class="text-on-surface-variant font-label-mono">2018 - 2020</span>
+              <h4 class="text-headline-md">Frontend Developer</h4>
+              <p class="text-on-surface-variant text-body-md">PixelPerfect Creative</p>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-surface-container-highest border border-outline-variant
+                        flex items-center justify-center z-10 transition-transform duration-500 hover:scale-125">
+              <span class="material-symbols-outlined text-on-surface-variant">brush</span>
+            </div>
+            <div class="flex-1 glass-card p-6 rounded-2xl">
+              <p class="text-on-surface-variant">Focused on creating pixel-perfect, interactive web animations and
+                highly responsive user interfaces using GreenSock and React.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EDUCATION ── -->
+    <section class="py-24 space-y-12" id="education">
+      <div class="text-center space-y-4 reveal-item">
+        <span class="text-primary font-label-mono uppercase tracking-widest">Credentials</span>
+        <h2 class="font-headline-lg text-headline-lg">Academic &amp; Certificates</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
+                    hover:bg-surface-container-high transition-all duration-500
+                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
+          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
+                      flex items-center justify-center group-hover:scale-110 group-hover:border-primary transition-all duration-300">
+            <span class="material-symbols-outlined text-4xl text-primary">school</span>
+          </div>
+          <h5 class="text-body-lg font-bold">M.S. Computer Science</h5>
+          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Stanford University</p>
+          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                      text-[10px] text-primary uppercase font-bold tracking-tighter">View Credential</div>
+        </div>
+
+        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
+                    hover:bg-surface-container-high transition-all duration-500
+                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
+          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
+                      flex items-center justify-center group-hover:scale-110 group-hover:border-tertiary transition-all duration-300">
+            <span class="material-symbols-outlined text-4xl text-tertiary"
+                  style="font-variation-settings:'FILL' 1">verified</span>
+          </div>
+          <h5 class="text-body-lg font-bold">AWS Certified Architect</h5>
+          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Professional Level</p>
+          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                      text-[10px] text-tertiary uppercase font-bold tracking-tighter">Verified Badge</div>
+        </div>
+
+        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
+                    hover:bg-surface-container-high transition-all duration-500
+                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
+          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
+                      flex items-center justify-center group-hover:scale-110 group-hover:border-primary transition-all duration-300">
+            <span class="material-symbols-outlined text-4xl text-primary"
+                  style="font-variation-settings:'FILL' 1">terminal</span>
+          </div>
+          <h5 class="text-body-lg font-bold">Full Stack Bootcamp</h5>
+          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Harvard CS50</p>
+          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                      text-[10px] text-primary uppercase font-bold tracking-tighter">Certificate ID: 942-A</div>
+        </div>
+
+        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
+                    hover:bg-surface-container-high transition-all duration-500
+                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
+          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
+                      flex items-center justify-center group-hover:scale-110 group-hover:border-tertiary transition-all duration-300">
+            <span class="material-symbols-outlined text-4xl text-tertiary"
+                  style="font-variation-settings:'FILL' 1">security</span>
+          </div>
+          <h5 class="text-body-lg font-bold">CompTIA Security+</h5>
+          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Cybersecurity Fundamentals</p>
+          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                      text-[10px] text-tertiary uppercase font-bold tracking-tighter">Active: 2024</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="bg-surface-container-lowest border-t border-outline-variant/20 py-12 px-margin-desktop mt-24">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+      <div class="flex flex-col items-center md:items-start gap-2">
+        <span class="text-body-lg font-headline-md text-on-surface">DevPortfolio</span>
+        <p class="text-on-surface-variant font-label-mono text-xs opacity-70">
+          © 2024 Nrimala Choudhary. Built with Precision.
+        </p>
+      </div>
+      <div class="flex gap-gutter">
+        <a href="#" class="text-on-surface-variant hover:text-tertiary transition-all hover:scale-110 duration-300 font-label-mono text-label-mono">GitHub</a>
+        <a href="#" class="text-on-surface-variant hover:text-tertiary transition-all hover:scale-110 duration-300 font-label-mono text-label-mono">LinkedIn</a>
+        <a href="#" class="text-on-surface-variant hover:text-tertiary transition-all hover:scale-110 duration-300 font-label-mono text-label-mono">Twitter</a>
+        <a href="#" class="text-on-surface-variant hover:text-tertiary transition-all hover:scale-110 duration-300 font-label-mono text-label-mono">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       MODAL
+  ══════════════════════════════════════ -->
+  <div class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] hidden opacity-0
+              transition-opacity duration-300 flex items-center justify-center p-6"
+       id="modal-backdrop" onclick="closeModal()">
+    <div class="bg-surface-container-high max-w-2xl w-full rounded-3xl p-10
+                border border-outline-variant/30 scale-90 opacity-0 transition-all duration-300 relative"
+         id="modal-content" onclick="event.stopPropagation()">
+      <button class="absolute top-6 right-6 w-10 h-10 rounded-full glass-card
+                     flex items-center justify-center hover:bg-primary/20 transition-colors"
+              onclick="closeModal()">
+        <span class="material-symbols-outlined text-on-surface">close</span>
+      </button>
+      <div class="space-y-6" id="modal-body">
+        <!-- Content injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCRIPTS (bottom of body — order matters!)
+  ══════════════════════════════════════ -->
+  <script src="js/data.js"></script>   <!-- data first -->
+  <script src="js/main.js"></script>   <!-- logic second -->
+
+</body>
+</html>

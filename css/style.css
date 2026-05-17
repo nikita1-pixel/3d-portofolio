@@ -1,0 +1,92 @@
+/* =============================================
+   PORTFOLIO - CUSTOM STYLES
+   File: css/style.css
+   Purpose: All custom styles (Tailwind handles utilities)
+   ============================================= */
+
+/* ---------- Floating animation (hero avatar) ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ---------- Glass card ---------- */
+.glass-card {
+  background: rgba(18, 33, 49, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(134, 149, 133, 0.2);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+}
+.glass-card:hover {
+  border-color: rgba(75, 226, 119, 0.5);
+  box-shadow:
+    0 10px 40px rgba(75, 226, 119, 0.15),
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Typing cursor ---------- */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  from, to { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ---------- Entrance animations (hero section) ---------- */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.entrance-anim {
+  opacity: 0;
+  animation: fadeSlideUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 3D tilt card ---------- */
+.tilt-card {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease-out;
+}
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar        { width: 8px; }
+::-webkit-scrollbar-track  { background: #051424; }
+::-webkit-scrollbar-thumb  { background: #1c2b3c; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #273647; }
+
+/* ---------- Reduced motion (accessibility) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  .entrance-anim,
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .bg-mesh { display: none; }
+}
