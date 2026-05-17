@@ -225,28 +225,7 @@
           </div>
         </div>
 
-        <!-- Small skill cards -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
-             onclick="openSkillModal('TypeScript', 'Writing type-safe, maintainable code for complex enterprise applications.')">
-          <span class="material-symbols-outlined text-primary text-4xl mb-4">code</span>
-          <h4 class="text-headline-md font-bold">TypeScript</h4>
-        </div>
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
-             onclick="openSkillModal('React &amp; Next.js', 'Creating immersive, fast-loading user interfaces with the latest web standards.')">
-          <span class="material-symbols-outlined text-tertiary text-4xl mb-4">layers</span>
-          <h4 class="text-headline-md font-bold">React</h4>
-        </div>
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
-             onclick="openSkillModal('Node.js', 'Building powerful server-side applications and real-time communication layers.')">
-          <span class="material-symbols-outlined text-primary text-4xl mb-4">terminal</span>
-          <h4 class="text-headline-md font-bold">Node.js</h4>
-        </div>
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item"
-             onclick="openSkillModal('PostgreSQL', 'Designing robust relational data models and optimizing query performance.')">
-          <span class="material-symbols-outlined text-tertiary text-4xl mb-4">database</span>
-          <h4 class="text-headline-md font-bold">SQL</h4>
-        </div>
-      </div>
+        <!-- Small skill cards will be injected here via main.js -->
     </section>
 
     <!-- ── PROJECTS ── -->
@@ -261,78 +240,8 @@
         </div>
       </div>
 
-      <!-- Project 1 -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center reveal-item">
-        <div class="order-2 md:order-1 space-y-6">
-          <div class="flex gap-2">
-            <span class="text-xs font-label-mono bg-primary/10 text-primary px-3 py-1 rounded-full">AuthPortal</span>
-            <span class="text-xs font-label-mono bg-tertiary/10 text-tertiary px-3 py-1 rounded-full">Full-Stack</span>
-          </div>
-          <h3 class="font-headline-lg text-headline-lg">Secure Governance Platform</h3>
-          <p class="text-body-lg text-on-surface-variant">
-            Designed and built a secure authentication system featuring Server-Side Rendering (SSR)
-            for optimized performance.
-          </p>
-          <ul class="space-y-3 font-body-md">
-            <li class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary">check_circle</span>
-              Map interface for visualizing user activity and access patterns
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary">check_circle</span>
-              Custom-built identity protection algorithms
-            </li>
-          </ul>
-          <button class="border border-outline-variant hover:border-primary px-6 py-3 rounded-xl
-                         flex items-center gap-2 group transition-all duration-300 hover:scale-105"
-                  onclick="openProjectModal('auth-portal')">
-            View Details
-            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">open_in_new</span>
-          </button>
-        </div>
-        <div class="order-1 md:order-2 rounded-3xl overflow-hidden bg-surface-container
-                    shadow-2xl project-img-container h-80 md:h-[400px]">
-          <img alt="Authportal Dashboard"
-               class="w-full h-full object-cover parallax-img transition-transform duration-700"
-               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNt8NP0VJeEqWZQFA3hS_TbjuYv35fxzRNvjlO8oNBP58VqVkc6BFCdbx42o6JIgE1sWZIIzgxYh_vlUoaWVFrffxEkBYgGHb2A_UygNrh3HksIgFJjnIvcjcXBtPQx9I-rWhCeHdHDTjzqMmgJQhZWRY10pB407QtNPzWGkyi53yuLqMPOz-03WkFmncTsuNpE2sA-RyiYu2BG5YFgoP2G4CZn761bBrjPLx0h6wTdORXuF7r0rPvyWhsryw-owZNe21NamUoyh6I" />
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center reveal-item">
-        <div class="rounded-3xl overflow-hidden bg-surface-container shadow-2xl project-img-container h-80 md:h-[400px]">
-          <img alt="AI CRM Interface"
-               class="w-full h-full object-cover parallax-img transition-transform duration-700"
-               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX5aMnc1FsD1tK_ZR88jMTY5YhgEvM6ZMIMJ_4rHI5QjDuPP0CxdnjXFw_Ao5XDZveMaYdztTCbiYtuarphIs2l3zR7NRZQFL4S5t7hBzdzoAgqUepacgGsyXF_4nThjRKY_G35q1ley5V5ApdZb3BW2ITkvYL-E_QRpbhx-V6FnpXncqZzPD6kDJHg4TfcaTLgWEhCKsWjA0a961IdZO2IMMPLjvS59YDGhoKV_qXdvXwO17cRLMA6Nsk9Jyg2uZaqdqSWQf-4tan" />
-        </div>
-        <div class="space-y-6">
-          <div class="flex gap-2">
-            <span class="text-xs font-label-mono bg-primary/10 text-primary px-3 py-1 rounded-full">SaaS</span>
-            <span class="text-xs font-label-mono bg-tertiary/10 text-tertiary px-3 py-1 rounded-full">AI/ML</span>
-          </div>
-          <h3 class="font-headline-lg text-headline-lg">NeuralNode CRM</h3>
-          <p class="text-body-lg text-on-surface-variant">
-            An AI-powered customer relationship platform that predicts churn and automates
-            follow-ups using natural language processing.
-          </p>
-          <ul class="space-y-3 font-body-md">
-            <li class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary">check_circle</span>
-              Proprietary ML model integration
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary">check_circle</span>
-              Real-time collaborative workspace
-            </li>
-          </ul>
-          <button class="border border-outline-variant hover:border-primary px-6 py-3 rounded-xl
-                         flex items-center gap-2 group transition-all duration-300 hover:scale-105"
-                  onclick="openProjectModal('neural-crm')">
-            View Details
-            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">open_in_new</span>
-          </button>
-        </div>
-      </div>
+      <!-- Projects will be injected here via main.js -->
+      <div id="projects-container" class="space-y-24 w-full"></div>
     </section>
 
     <!-- ── EXPERIENCE ── -->
@@ -350,57 +259,8 @@
                id="scroll-progress-line"></div>
         </div>
 
-        <div class="space-y-24">
-          <!-- Milestone 1 -->
-          <div class="flex flex-col md:flex-row items-center gap-gutter milestone reveal-item">
-            <div class="flex-1 md:text-right">
-              <span class="text-primary font-label-mono">2022 - Present</span>
-              <h4 class="text-headline-md">Senior Architect</h4>
-              <p class="text-on-surface-variant text-body-md">TechNova Systems</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center z-10
-                        shadow-[0_0_20px_rgba(75,226,119,0.5)] transition-transform duration-500 hover:scale-125">
-              <span class="material-symbols-outlined text-on-primary">rocket_launch</span>
-            </div>
-            <div class="flex-1 glass-card p-6 rounded-2xl">
-              <p class="text-on-surface-variant">Spearheaded the migration of a legacy monolithic platform to a
-                cloud-native microservices architecture, reducing infrastructure costs by 40%.</p>
-            </div>
-          </div>
-
-          <!-- Milestone 2 -->
-          <div class="flex flex-col md:flex-row-reverse items-center gap-gutter milestone reveal-item">
-            <div class="flex-1 md:text-left">
-              <span class="text-tertiary font-label-mono">2020 - 2022</span>
-              <h4 class="text-headline-md">Full-Stack Lead</h4>
-              <p class="text-on-surface-variant text-body-md">InnoLabs Global</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-tertiary flex items-center justify-center z-10
-                        shadow-[0_0_20px_rgba(124,208,255,0.5)] transition-transform duration-500 hover:scale-125">
-              <span class="material-symbols-outlined text-on-tertiary">groups</span>
-            </div>
-            <div class="flex-1 glass-card p-6 rounded-2xl">
-              <p class="text-on-surface-variant">Led a team of 8 developers in launching a series of high-impact
-                FinTech solutions used by over 50,000 monthly active users.</p>
-            </div>
-          </div>
-
-          <!-- Milestone 3 -->
-          <div class="flex flex-col md:flex-row items-center gap-gutter milestone reveal-item">
-            <div class="flex-1 md:text-right">
-              <span class="text-on-surface-variant font-label-mono">2018 - 2020</span>
-              <h4 class="text-headline-md">Frontend Developer</h4>
-              <p class="text-on-surface-variant text-body-md">PixelPerfect Creative</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-surface-container-highest border border-outline-variant
-                        flex items-center justify-center z-10 transition-transform duration-500 hover:scale-125">
-              <span class="material-symbols-outlined text-on-surface-variant">brush</span>
-            </div>
-            <div class="flex-1 glass-card p-6 rounded-2xl">
-              <p class="text-on-surface-variant">Focused on creating pixel-perfect, interactive web animations and
-                highly responsive user interfaces using GreenSock and React.</p>
-            </div>
-          </div>
+        <div class="space-y-24" id="experience-container">
+          <!-- Milestones will be injected here via main.js -->
         </div>
       </div>
     </section>
@@ -412,61 +272,8 @@
         <h2 class="font-headline-lg text-headline-lg">Academic &amp; Certificates</h2>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
-                    hover:bg-surface-container-high transition-all duration-500
-                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
-          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
-                      flex items-center justify-center group-hover:scale-110 group-hover:border-primary transition-all duration-300">
-            <span class="material-symbols-outlined text-4xl text-primary">school</span>
-          </div>
-          <h5 class="text-body-lg font-bold">M.S. Computer Science</h5>
-          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Stanford University</p>
-          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                      text-[10px] text-primary uppercase font-bold tracking-tighter">View Credential</div>
-        </div>
-
-        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
-                    hover:bg-surface-container-high transition-all duration-500
-                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
-          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
-                      flex items-center justify-center group-hover:scale-110 group-hover:border-tertiary transition-all duration-300">
-            <span class="material-symbols-outlined text-4xl text-tertiary"
-                  style="font-variation-settings:'FILL' 1">verified</span>
-          </div>
-          <h5 class="text-body-lg font-bold">AWS Certified Architect</h5>
-          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Professional Level</p>
-          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                      text-[10px] text-tertiary uppercase font-bold tracking-tighter">Verified Badge</div>
-        </div>
-
-        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
-                    hover:bg-surface-container-high transition-all duration-500
-                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
-          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
-                      flex items-center justify-center group-hover:scale-110 group-hover:border-primary transition-all duration-300">
-            <span class="material-symbols-outlined text-4xl text-primary"
-                  style="font-variation-settings:'FILL' 1">terminal</span>
-          </div>
-          <h5 class="text-body-lg font-bold">Full Stack Bootcamp</h5>
-          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Harvard CS50</p>
-          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                      text-[10px] text-primary uppercase font-bold tracking-tighter">Certificate ID: 942-A</div>
-        </div>
-
-        <div class="group flex flex-col items-center text-center p-8 rounded-3xl
-                    hover:bg-surface-container-high transition-all duration-500
-                    transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item">
-          <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4
-                      flex items-center justify-center group-hover:scale-110 group-hover:border-tertiary transition-all duration-300">
-            <span class="material-symbols-outlined text-4xl text-tertiary"
-                  style="font-variation-settings:'FILL' 1">security</span>
-          </div>
-          <h5 class="text-body-lg font-bold">CompTIA Security+</h5>
-          <p class="text-on-surface-variant text-label-mono text-xs mt-1">Cybersecurity Fundamentals</p>
-          <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                      text-[10px] text-tertiary uppercase font-bold tracking-tighter">Active: 2024</div>
-        </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter" id="credentials-grid">
+        <!-- Credentials will be injected here via main.js -->
       </div>
     </section>
 

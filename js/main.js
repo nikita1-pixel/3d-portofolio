@@ -113,6 +113,131 @@
 
 
 /* ─────────────────────────────────────────────
+   3.5 DYNAMIC CONTENT RENDER
+───────────────────────────────────────────── */
+(function initDynamicContent() {
+    // 1. Skills
+    const skillsGrid = document.getElementById('skills-grid');
+    if (skillsGrid) {
+        skills.forEach(skill => {
+            const el = document.createElement('div');
+            el.className = 'glass-card p-6 rounded-3xl flex flex-col justify-between hover:scale-[1.02] tilt-card reveal-item';
+            el.setAttribute('onclick', `openSkillModal('${skill.title.replace(/'/g, "\\'")}', '${skill.description.replace(/'/g, "\\'")}')`);
+            el.innerHTML = `
+                <span class="material-symbols-outlined ${skill.iconColor} text-4xl mb-4">${skill.icon}</span>
+                <h4 class="text-headline-md font-bold">${skill.title}</h4>
+            `;
+            skillsGrid.appendChild(el);
+        });
+    }
+
+    // 2. Projects
+    const projectsContainer = document.getElementById('projects-container');
+    if (projectsContainer) {
+        projects.forEach((project, index) => {
+            const isEven = index % 2 === 0;
+            const tagsHtml = project.tags.map(tag => `<span class="text-xs font-label-mono bg-${tag.color}/10 text-${tag.color} px-3 py-1 rounded-full">${tag.label}</span>`).join('');
+            const highlightsHtml = project.highlights.map(hl => `<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>${hl}</li>`).join('');
+            
+            const el = document.createElement('div');
+            el.className = 'grid grid-cols-1 md:grid-cols-2 gap-gutter items-center reveal-item';
+            
+            if (isEven) {
+                el.innerHTML = `
+                    <div class="order-2 md:order-1 space-y-6">
+                        <div class="flex gap-2">${tagsHtml}</div>
+                        <h3 class="font-headline-lg text-headline-lg">${project.title}</h3>
+                        <p class="text-body-lg text-on-surface-variant">${project.description}</p>
+                        <ul class="space-y-3 font-body-md">${highlightsHtml}</ul>
+                        <button class="border border-outline-variant hover:border-primary px-6 py-3 rounded-xl flex items-center gap-2 group transition-all duration-300 hover:scale-105" onclick="openProjectModal('${project.id}')">
+                            View Details
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">open_in_new</span>
+                        </button>
+                    </div>
+                    <div class="order-1 md:order-2 rounded-3xl overflow-hidden bg-surface-container shadow-2xl project-img-container h-80 md:h-[400px]">
+                        <img alt="${project.imageAlt}" class="w-full h-full object-cover parallax-img transition-transform duration-700" src="${project.image}" />
+                    </div>
+                `;
+            } else {
+                el.innerHTML = `
+                    <div class="rounded-3xl overflow-hidden bg-surface-container shadow-2xl project-img-container h-80 md:h-[400px]">
+                        <img alt="${project.imageAlt}" class="w-full h-full object-cover parallax-img transition-transform duration-700" src="${project.image}" />
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex gap-2">${tagsHtml}</div>
+                        <h3 class="font-headline-lg text-headline-lg">${project.title}</h3>
+                        <p class="text-body-lg text-on-surface-variant">${project.description}</p>
+                        <ul class="space-y-3 font-body-md">${highlightsHtml}</ul>
+                        <button class="border border-outline-variant hover:border-primary px-6 py-3 rounded-xl flex items-center gap-2 group transition-all duration-300 hover:scale-105" onclick="openProjectModal('${project.id}')">
+                            View Details
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">open_in_new</span>
+                        </button>
+                    </div>
+                `;
+            }
+            projectsContainer.appendChild(el);
+        });
+    }
+
+    // 3. Experience
+    const experienceContainer = document.getElementById('experience-container');
+    if (experienceContainer) {
+        experience.forEach(exp => {
+            const getTextColor = (bgClass) => {
+                if (bgClass === 'bg-primary') return 'text-on-primary';
+                if (bgClass === 'bg-tertiary') return 'text-on-tertiary';
+                return 'text-on-surface-variant';
+            };
+            const getPeriodColor = (bgClass) => {
+                if (bgClass === 'bg-primary') return 'text-primary';
+                if (bgClass === 'bg-tertiary') return 'text-tertiary';
+                return 'text-on-surface-variant';
+            };
+            
+            const isRight = exp.align === 'right';
+            const el = document.createElement('div');
+            el.className = `flex flex-col md:flex-row${isRight ? '-reverse' : ''} items-center gap-gutter milestone reveal-item`;
+            
+            const shadowStyle = exp.shadowColor !== 'none' ? `style="box-shadow: 0 0 20px ${exp.shadowColor}"` : '';
+            const borderClass = exp.iconBg === 'bg-surface-container-highest' ? 'border border-outline-variant' : '';
+            
+            el.innerHTML = `
+                <div class="flex-1 md:text-${isRight ? 'left' : 'right'}">
+                    <span class="${getPeriodColor(exp.iconBg)} font-label-mono">${exp.period}</span>
+                    <h4 class="text-headline-md">${exp.role}</h4>
+                    <p class="text-on-surface-variant text-body-md">${exp.company}</p>
+                </div>
+                <div class="w-12 h-12 rounded-full ${exp.iconBg} ${borderClass} flex items-center justify-center z-10 transition-transform duration-500 hover:scale-125" ${shadowStyle}>
+                    <span class="material-symbols-outlined ${getTextColor(exp.iconBg)}">${exp.icon}</span>
+                </div>
+                <div class="flex-1 glass-card p-6 rounded-2xl">
+                    <p class="text-on-surface-variant">${exp.description}</p>
+                </div>
+            `;
+            experienceContainer.appendChild(el);
+        });
+    }
+
+    // 4. Credentials
+    const credentialsGrid = document.getElementById('credentials-grid');
+    if (credentialsGrid) {
+        credentials.forEach(cred => {
+            const el = document.createElement('div');
+            el.className = 'group flex flex-col items-center text-center p-8 rounded-3xl hover:bg-surface-container-high transition-all duration-500 transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item';
+            el.innerHTML = `
+                <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4 flex items-center justify-center group-hover:scale-110 ${cred.borderHover} transition-all duration-300">
+                    <span class="material-symbols-outlined text-4xl ${cred.iconColor}" style="font-variation-settings:'FILL' 1">${cred.icon}</span>
+                </div>
+                <h5 class="text-body-lg font-bold">${cred.title}</h5>
+                <p class="text-on-surface-variant text-label-mono text-xs mt-1">${cred.subtitle}</p>
+                <div class="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[10px] ${cred.iconColor} uppercase font-bold tracking-tighter">${cred.hoverLabel}</div>
+            `;
+            credentialsGrid.appendChild(el);
+        });
+    }
+})();
+
+/* ─────────────────────────────────────────────
    4. SCROLL REVEAL (Intersection Observer)
 ───────────────────────────────────────────── */
 (function initReveal() {
