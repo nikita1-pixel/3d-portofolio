@@ -140,7 +140,9 @@
             const highlightsHtml = project.highlights.map(hl => `<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>${hl}</li>`).join('');
             
             const el = document.createElement('div');
-            el.className = 'grid grid-cols-1 md:grid-cols-2 gap-gutter items-center reveal-item';
+            el.className = 'grid grid-cols-1 md:grid-cols-2 gap-gutter items-center';
+            el.setAttribute('data-anime-reveal', 'scale');
+            el.setAttribute('data-anime-delay', String(index * 100));
             
             if (isEven) {
                 el.innerHTML = `
@@ -196,7 +198,10 @@
             
             const isRight = exp.align === 'right';
             const el = document.createElement('div');
-            el.className = `flex flex-col md:flex-row${isRight ? '-reverse' : ''} items-center gap-gutter milestone reveal-item`;
+            const revealClass = isRight ? 'reveal-right' : 'reveal-left';
+            const revealAttr = isRight ? 'right' : 'left';
+            el.className = `flex flex-col md:flex-row${isRight ? '-reverse' : ''} items-center gap-gutter milestone`;
+            el.setAttribute('data-anime-reveal', revealAttr);
             
             const shadowStyle = exp.shadowColor !== 'none' ? `style="box-shadow: 0 0 20px ${exp.shadowColor}"` : '';
             const borderClass = exp.iconBg === 'bg-surface-container-highest' ? 'border border-outline-variant' : '';
@@ -221,9 +226,11 @@
     // 4. Credentials
     const credentialsGrid = document.getElementById('credentials-grid');
     if (credentialsGrid) {
-        credentials.forEach(cred => {
+        credentials.forEach((cred, idx) => {
             const el = document.createElement('div');
-            el.className = 'group flex flex-col items-center text-center p-8 rounded-3xl hover:bg-surface-container-high transition-all duration-500 transform hover:-translate-y-2 cursor-pointer relative overflow-hidden reveal-item';
+            el.className = 'group flex flex-col items-center text-center p-8 rounded-3xl hover:bg-surface-container-high transition-all duration-500 transform hover:-translate-y-2 cursor-pointer relative overflow-hidden';
+            el.setAttribute('data-anime-reveal', 'scale');
+            el.setAttribute('data-anime-delay', String(idx * 80));
             el.innerHTML = `
                 <div class="w-20 h-20 rounded-2xl bg-surface-container-highest border border-outline-variant mb-4 flex items-center justify-center group-hover:scale-110 ${cred.borderHover} transition-all duration-300">
                     <span class="material-symbols-outlined text-4xl ${cred.iconColor}" style="font-variation-settings:'FILL' 1">${cred.icon}</span>
@@ -252,7 +259,7 @@
         { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
     );
 
-    document.querySelectorAll('.reveal-item').forEach((item, index) => {
+    document.querySelectorAll('.reveal-item, .reveal-left, .reveal-right, .reveal-scale').forEach((item, index) => {
         // Stagger items that enter viewport at the same time
         item.style.transitionDelay = `${(index % 4) * 100}ms`;
         observer.observe(item);
@@ -401,7 +408,177 @@ function openProjectModal(projectId) {
     showModal();
 }
 
-// Close modal on Escape key
+// Close modals on Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') {
+        closeModal();
+        closeContactModal();
+    }
 });
+
+/* ─────────────────────────────────────────────
+   CONTACT MODAL
+───────────────────────────────────────────── */
+function openContactModal() {
+    const backdrop = document.getElementById('contact-modal-backdrop');
+    const modal    = document.getElementById('contact-modal');
+    if (!backdrop || !modal) return;
+
+    backdrop.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // anime.js animates this in animations.js via the global event
+    document.dispatchEvent(new CustomEvent('contact-modal-open', { detail: { modal, backdrop } }));
+}
+
+function closeContactModal() {
+    const backdrop = document.getElementById('contact-modal-backdrop');
+    const modal    = document.getElementById('contact-modal');
+    if (!backdrop || modal.style.opacity === '0') return;
+
+    document.dispatchEvent(new CustomEvent('contact-modal-close', { detail: { modal, backdrop } }));
+}
+
+function submitContactForm(e) {
+    e.preventDefault();
+    const name    = document.getElementById('contact-name').value.trim();
+    const email   = document.getElementById('contact-email').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+    const btn     = document.getElementById('contact-submit');
+    const btnText = document.getElementById('contact-submit-text');
+
+    // Animate button to sending state
+    btn.disabled = true;
+    btnText.textContent = 'Opening email...';
+
+    // Build mailto and open it
+    const subject  = encodeURIComponent(`Hire Inquiry from ${name}`);
+    const body     = encodeURIComponent(`Hi Nirmala,\n\n${message}\n\nBest,\n${name}\n${email}`);
+    window.open(`mailto:nirmalachoudharyou@gmail.com?subject=${subject}&body=${body}`, '_blank');
+
+    // Show success state, then close
+    setTimeout(() => {
+        btnText.textContent = 'Message Sent! ✓';
+        btn.classList.remove('bg-primary');
+        btn.classList.add('bg-green-600');
+        setTimeout(() => {
+            closeContactModal();
+            // Reset form after close
+            setTimeout(() => {
+                document.getElementById('contact-form').reset();
+                btn.disabled = false;
+                btnText.textContent = 'Send Message';
+                btn.classList.add('bg-primary');
+                btn.classList.remove('bg-green-600');
+            }, 500);
+        }, 1500);
+    }, 400);
+}
+
+/* ─────────────────────────────────────────────
+   7. BUTTON RIPPLE EFFECT
+───────────────────────────────────────────── */
+(function initRipple() {
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.btn-ripple');
+        if (!btn) return;
+        
+        const circle = document.createElement('span');
+        const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+        const radius = diameter / 2;
+        
+        const rect = btn.getBoundingClientRect();
+        
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${e.clientX - rect.left - radius}px`;
+        circle.style.top = `${e.clientY - rect.top - radius}px`;
+        circle.classList.add('ripple-circle');
+        
+        // Remove existing ripples
+        const existing = btn.querySelector('.ripple-circle');
+        if (existing) {
+            existing.remove();
+        }
+        
+        btn.appendChild(circle);
+        
+        setTimeout(() => {
+            circle.remove();
+        }, 600);
+    });
+})();
+
+/* ─────────────────────────────────────────────
+   8. CURSOR TRAILING RING
+   The native cursor is always visible.
+   A glowing ring trails behind it as an overlay.
+───────────────────────────────────────────── */
+(function initCursor() {
+    // Only run on non-touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const trail = document.getElementById('cursor-trail');
+    if (!trail) return;
+
+    let mouseX = 0, mouseY = 0;
+    let trailX = 0, trailY = 0;
+
+    // Show trail once mouse enters window
+    trail.style.opacity = '0';
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        trail.style.opacity = '1';
+    });
+
+    function animateTrail() {
+        trailX += (mouseX - trailX) * 0.12;
+        trailY += (mouseY - trailY) * 0.12;
+        trail.style.left = `${trailX}px`;
+        trail.style.top = `${trailY}px`;
+        requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+
+    // Expand ring on hover over interactive elements
+    document.querySelectorAll('a, button, .cursor-pointer').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            trail.style.width  = '56px';
+            trail.style.height = '56px';
+            trail.style.borderColor = 'rgba(75, 226, 119, 1)';
+            trail.style.backgroundColor = 'rgba(75, 226, 119, 0.08)';
+        });
+        el.addEventListener('mouseleave', () => {
+            trail.style.width  = '36px';
+            trail.style.height = '36px';
+            trail.style.borderColor = 'rgba(75, 226, 119, 0.6)';
+            trail.style.backgroundColor = 'transparent';
+        });
+    });
+
+    // Hide trail when cursor leaves window
+    document.addEventListener('mouseleave', () => { trail.style.opacity = '0'; });
+})();
+
+/* ─────────────────────────────────────────────
+   9. MAGNETIC MENU EFFECTS
+───────────────────────────────────────────── */
+(function initMagnetic() {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const magnetics = document.querySelectorAll('.magnetic');
+    
+    magnetics.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'translate(0px, 0px)';
+        });
+    });
+})();
