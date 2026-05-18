@@ -148,6 +148,7 @@ html {
 /* ---------- Mobile Menu ---------- */
 #mobile-menu {
   transition: opacity 0.3s ease;
+  display: none;
 }
 #mobile-menu.open {
   display: flex;

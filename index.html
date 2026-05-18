@@ -163,7 +163,7 @@
 
   <!-- Mobile menu overlay -->
   <div id="mobile-menu"
-       class="fixed inset-0 z-[90] hidden flex-col"
+       class="fixed inset-0 z-[90] flex-col"
        style="background: rgba(5,20,36,0.97); backdrop-filter: blur(20px);">
     <div class="flex justify-between items-center px-5 h-20 border-b border-outline-variant/20">
       <span class="text-headline-md font-bold text-primary">Menu</span>
@@ -363,10 +363,10 @@
        MODAL
   ══════════════════════════════════════ -->
   <div class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] hidden opacity-0
-              transition-opacity duration-300 flex items-center justify-center p-6"
+              transition-opacity duration-300 flex items-center justify-center p-4 sm:p-6"
        id="modal-backdrop" onclick="closeModal()">
-    <div class="bg-surface-container-high max-w-2xl w-full rounded-3xl p-10
-                border border-outline-variant/30 scale-90 opacity-0 transition-all duration-300 relative"
+    <div class="bg-surface-container-high max-w-2xl w-full rounded-3xl p-6 sm:p-10
+                border border-outline-variant/30 scale-90 opacity-0 transition-all duration-300 relative max-h-[85vh] overflow-y-auto"
          id="modal-content" onclick="event.stopPropagation()">
       <button class="absolute top-6 right-6 w-10 h-10 rounded-full glass-card
                      flex items-center justify-center hover:bg-primary/20 transition-colors"
@@ -388,7 +388,7 @@
        style="background: rgba(5,20,36,0.85); backdrop-filter: blur(16px);">
 
     <div id="contact-modal"
-         class="relative w-full max-w-lg rounded-3xl border border-outline-variant/30 overflow-hidden"
+         class="relative w-full max-w-lg rounded-3xl border border-outline-variant/30 max-h-[85vh] overflow-y-auto"
          style="background: rgba(18,33,49,0.95); transform: scale(0.9); opacity: 0;">
 
       <!-- Decorative glow blobs -->
