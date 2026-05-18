@@ -65,7 +65,7 @@ const projects = [
         imageAlt: "Authportal Dashboard",
         techStack: ["Next.js", "TypeScript", "Tailwind", "Redis", "PostgreSQL"],
         liveDemo: "#",
-        sourceCode: "#"
+        sourceCode: "https://github.com/nikita1-pixel/AuthPortal"
     },
     {
         id: "Shopify-Clone",
@@ -79,11 +79,11 @@ const projects = [
             highlights: [
             
         ],
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDX5aMnc1FsD1tK_ZR88jMTY5YhgEvM6ZMIMJ_4rHI5QjDuPP0CxdnjXFw_Ao5XDZveMaYdztTCbiYtuarphIs2l3zR7NRZQFL4S5t7hBzdzoAgqUepacgGsyXF_4nThjRKY_G35q1ley5V5ApdZb3BW2ITkvYL-E_QRpbhx-V6FnpXncqZzPD6kDJHg4TfcaTLgWEhCKsWjA0a961IdZO2IMMPLjvS59YDGhoKV_qXdvXwO17cRLMA6Nsk9Jyg2uZaqdqSWQf-4tan",
+        image: "",
         imageAlt: "AI CRM Interface",
         techStack: ["JavaScript", "Reactjs", "ES6", "CSS"],
-        liveDemo: "#",
-        sourceCode: "#"
+        liveDemo: "https://shopify-react-site.onrender.com/",
+        sourceCode: "https://github.com/nikita1-pixel/shopify-react-site"
     },
     {
         id: "CURD ",
@@ -101,8 +101,8 @@ const projects = [
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDX5aMnc1FsD1tK_ZR88jMTY5YhgEvM6ZMIMJ_4rHI5QjDuPP0CxdnjXFw_Ao5XDZveMaYdztTCbiYtuarphIs2l3zR7NRZQFL4S5t7hBzdzoAgqUepacgGsyXF_4nThjRKY_G35q1ley5V5ApdZb3BW2ITkvYL-E_QRpbhx-V6FnpXncqZzPD6kDJHg4TfcaTLgWEhCKsWjA0a961IdZO2IMMPLjvS59YDGhoKV_qXdvXwO17cRLMA6Nsk9Jyg2uZaqdqSWQf-4tan",
         imageAlt: "AI CRM Interface",
         techStack: ["JavaScript", "Reactjs", "ES6", "CSS"],
-        liveDemo: "#",
-        sourceCode: "#"
+        liveDemo: "https://crud-cpzuwtze6-nikis-projects-caa48c82.vercel.app/",
+        sourceCode: "https://github.com/nikita1-pixel/crud"
     }
     
 
