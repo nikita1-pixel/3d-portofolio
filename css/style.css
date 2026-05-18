@@ -145,6 +145,88 @@ html {
   .bg-mesh { display: none; }
 }
 
+/* ---------- Mobile Menu ---------- */
+#mobile-menu {
+  transition: opacity 0.3s ease;
+}
+#mobile-menu.open {
+  display: flex;
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 767px) {
+
+  /* Hero: shrink the big display heading */
+  h1.font-display-lg {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.15;
+  }
+
+  /* Hide avatar on very small screens to avoid clutter */
+  #hero-visual-area {
+    display: none;
+  }
+
+  /* Hero section min-height reduced on mobile */
+  #hero {
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Experience timeline: move line to the left and keep cards full-width */
+  #experience .absolute.left-1\/2 {
+    left: 16px;
+    transform: none;
+  }
+
+  /* Milestone layout: stack vertically, left-aligned */
+  .milestone {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding-left: 2.5rem;
+  }
+
+  /* Hide the "reverse" flex on mobile — always left aligned */
+  .milestone.md\:flex-row-reverse {
+    flex-direction: column !important;
+  }
+
+  /* Milestone text alignment always left on mobile */
+  .milestone > div:first-child {
+    text-align: left !important;
+  }
+
+  /* Milestone icon: position to the left edge */
+  .milestone > div:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  /* Credentials: single column on mobile */
+  #credentials-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  /* Marquee: slightly smaller text on mobile */
+  .marquee-content {
+    font-size: 0.875rem;
+    gap: 1.5rem;
+  }
+
+  /* Contact modal: use full screen on mobile */
+  #contact-modal {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* Nav name: truncate if too long */
+  nav .text-headline-md {
+    font-size: 1rem;
+  }
+}
+
 /* ---------- Custom Cursor ---------- */
 /* Native cursor stays visible — the trail/dot are additive overlay effects */
 .cursor-trail {

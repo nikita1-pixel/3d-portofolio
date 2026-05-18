@@ -7,6 +7,33 @@
    ============================================= */
 
 /* ─────────────────────────────────────────────
+   MOBILE MENU TOGGLE
+───────────────────────────────────────────── */
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const bars = document.querySelectorAll('.mobile-bar');
+    const isOpen = menu.classList.contains('open');
+
+    if (isOpen) {
+        menu.style.opacity = '0';
+        setTimeout(() => menu.classList.remove('open'), 300);
+        bars[0].style.transform = '';
+        bars[1].style.opacity = '';
+        bars[2].style.transform = '';
+        document.body.style.overflow = '';
+    } else {
+        menu.classList.add('open');
+        menu.style.opacity = '0';
+        setTimeout(() => { menu.style.opacity = '1'; }, 10);
+        // Animate to X
+        bars[0].style.transform = 'translateY(8px) rotate(45deg)';
+        bars[1].style.opacity = '0';
+        bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+/* ─────────────────────────────────────────────
    1. TYPING ANIMATION
    Uses techStack array from data.js
 ───────────────────────────────────────────── */
