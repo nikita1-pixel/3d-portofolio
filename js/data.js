@@ -61,7 +61,7 @@ const projects = [
             "Map interface for visualizing user activity and access patterns",
             "Custom-built identity protection algorithms to prevent unauthorized access"
         ],
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDNt8NP0VJeEqWZQFA3hS_TbjuYv35fxzRNvjlO8oNBP58VqVkc6BFCdbx42o6JIgE1sWZIIzgxYh_vlUoaWVFrffxEkBYgGHb2A_UygNrh3HksIgFJjnIvcjcXBtPQx9I-rWhCeHdHDTjzqMmgJQhZWRY10pB407QtNPzWGkyi53yuLqMPOz-03WkFmncTsuNpE2sA-RyiYu2BG5YFgoP2G4CZn761bBrjPLx0h6wTdORXuF7r0rPvyWhsryw-owZNe21NamUoyh6I",
+        image: "assets/images/authportal.png",
         imageAlt: "Authportal Dashboard",
         techStack: ["Next.js", "TypeScript", "Tailwind", "Redis", "PostgreSQL"],
         liveDemo: "#",
@@ -79,8 +79,8 @@ const projects = [
             highlights: [
             
         ],
-        image: "",
-        imageAlt: "AI CRM Interface",
+        image: "assets/images/shopify.png",
+        imageAlt: "Shopify Clone Interface",
         techStack: ["JavaScript", "Reactjs", "ES6", "CSS"],
         liveDemo: "https://shopify-react-site.onrender.com/",
         sourceCode: "https://github.com/nikita1-pixel/shopify-react-site"
@@ -98,8 +98,8 @@ const projects = [
             "Dynamic product catalog system to manage inventory and pricing",
             "Responsive user interface designed to enhance customer engagement and drive sales"
         ],
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDX5aMnc1FsD1tK_ZR88jMTY5YhgEvM6ZMIMJ_4rHI5QjDuPP0CxdnjXFw_Ao5XDZveMaYdztTCbiYtuarphIs2l3zR7NRZQFL4S5t7hBzdzoAgqUepacgGsyXF_4nThjRKY_G35q1ley5V5ApdZb3BW2ITkvYL-E_QRpbhx-V6FnpXncqZzPD6kDJHg4TfcaTLgWEhCKsWjA0a961IdZO2IMMPLjvS59YDGhoKV_qXdvXwO17cRLMA6Nsk9Jyg2uZaqdqSWQf-4tan",
-        imageAlt: "AI CRM Interface",
+        image: "assets/images/CURD.png",
+        imageAlt: "CURD Dashboard",
         techStack: ["JavaScript", "Reactjs", "ES6", "CSS"],
         liveDemo: "https://crud-cpzuwtze6-nikis-projects-caa48c82.vercel.app/",
         sourceCode: "https://github.com/nikita1-pixel/crud"
